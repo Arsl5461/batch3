@@ -1,0 +1,48 @@
+.login-form{
+    margin-top: 80px;
+    width: 700px;
+    text-align: center;
+    margin: 100px auto;
+}
+.toggle-link1{
+    text-decoration: none;
+    font-size: 20px;
+}
+.toggle-link2{
+    text-decoration: none;
+}
+.toggle-link:hover{
+    cursor: pointer;
+}
+.input-form h2{
+    font-size: 15px;
+    justify-content: start;
+    display: flex;
+}
+.input-form input{
+    font-size: 20px;
+    height: 50px;
+    width: 100%;
+}
+.signup-form h1{
+    font-size: 50px;
+    margin-top: 80px;
+    color: orange;
+    text-align: center;
+}
+.input-form{
+    margin-top: 30px;
+}
+.custom-button {
+    background-color: red; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: darkred; 
+    transform: scale(1.05); 
+  }

@@ -1,0 +1,13 @@
+.image{
+    height: 50px;
+}
+.nav-list{
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+}
+.nav-list input{
+    height: auto;
+    width: 500px;
+}
