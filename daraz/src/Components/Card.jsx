@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const Cards = ({product}) => {
+  console.log(product)
   return (
     <Card style={{ width: '18rem', }}>
       <Card.Body>
-        <Card.Img src={product.image} height={"200px"} width={"100px"}/>
+        <Card.Img src={`${process.env.REACT_APP_FILE_URL}/${product?.image}`} height={"200px"} width={"100px"}/>
         <Card.Title>{product.title}</Card.Title>
         <Card.Text>
           {product.description.slice(0,30)}

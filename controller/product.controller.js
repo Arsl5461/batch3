@@ -3,6 +3,7 @@ const Product=require("../model/product.model")
 
 exports.store=async(req,res)=>{
     try{
+        req.body.image=req.file.filename;
         const product=await Product.create(req.body)
         return res.json({status:200,success:true,message:"Product Created Successfully",product})
     }
