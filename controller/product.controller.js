@@ -12,8 +12,13 @@ exports.store=async(req,res)=>{
     }
 }
 exports.index=async(req,res)=>{
+    const {category}=req.query;
+    const query={};
+    if(category){
+        query.category=category;
+    }
     try{
-        const products=await Product.find()
+        const products=await Product.find(query);
         return res.json({status:200,success:true,message:"Products Fetched Successfully",products})
     }
     catch(err){

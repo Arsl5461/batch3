@@ -19,6 +19,10 @@ const productSchema = mongoose.Schema({
     status: {
         type: Boolean,
         default: true
+    },
+    category:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Categories"
     }
 },
     { timestamps: true }
