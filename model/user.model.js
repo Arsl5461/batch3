@@ -19,6 +19,9 @@ const userSchema=mongoose.Schema({
     status:{
         type:Boolean,
         default:true
+    },
+    code:{
+        type:Number
     }
 },
 {timestamps:true}

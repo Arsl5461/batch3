@@ -83,3 +83,62 @@ exports.update = async (req, res) => {
         console.log(err)
     }
 }
+
+
+exports.generateOTP = async (req, res) => {
+    try {
+        const { email } = req.body;
+        console.log(email)
+        const user = await User.findOne({ email: email });
+        console.log(user)
+        if (!user) {
+            return res.json({ status: 404, message: "User not found", success: false })
+        }
+        const code = Math.floor(100000 + Math.random() * 900000);
+        user.code = code;
+        user.save();
+        return res.json({ status: 200, message: "OTP generated successfully", success: true })
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+exports.verify = async (req, res) => {
+    try {
+        const { email, otp } = req.body;
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            return res.json({ status: 404, message: "User not found", success: false })
+        }
+        if (otp == user.code) {
+            console.log("User already:")
+            return res.json({ status: 200, message: "User verified successfully", success: true })
+        }
+        else {
+            res.json({ status: 404, message: "User not found", success: false })
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+exports.updatePassword = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            return res.json({ status: 404, success: false, message: "User not found" })
+        }
+
+        const hashedPassword = await bcrypt.hash(password, SALT);
+        user.password = hashedPassword;
+        await user.save();
+        return res.json({ success: true, message: "User Password Updated successfully", status: 200 })
+    }
+    catch (err) {
+        console.log(err.message)
+    }
+}

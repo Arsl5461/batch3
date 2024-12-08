@@ -201,6 +201,13 @@ function sidebar() {
       </li>
 
       <li className="nav-item">
+        <Link className="nav-link collapsed" to="/admin/categories">
+          <i className="bi bi-question-circle"></i>
+          <span>Categories</span>
+        </Link>
+      </li>
+
+      <li className="nav-item">
         <Link className="nav-link collapsed" to="/admin/faq">
           <i className="bi bi-question-circle"></i>
           <span>F.A.Q</span>

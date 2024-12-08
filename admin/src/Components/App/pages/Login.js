@@ -3,34 +3,29 @@ import {Link,useNavigate} from "react-router-dom"
 import Logo from "../../../assets/img/logo.png"
 import { toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 function Login() {
   const navigate=useNavigate();
   const [userEmail,setUserEmail]=useState("")
   const [userPassword,setUserPassword]=useState("");
-  const email=JSON.parse(localStorage.getItem("email"));
-  const userPass=JSON.parse(localStorage.getItem("password"));
 
-  const onSubmit=(e)=>{
+  const onSubmit=async(e)=>{
     e.preventDefault();
-  
-    if(userEmail===email && userPassword===userPass){
-toast.success("User Logged in Successfuly",{
-  autoClose: 1000
-});
-setTimeout(()=>{
-  navigate("/admin/dashboard")
-},2000)
-
-    }
-    else{
+    const response=await axios.post("http://localhost:8082/api/user/login",{email:userEmail,password:userPassword})
+    if(response.data.succes){
+      toast.success("User Logged in Successfuly",{
+        autoClose: 1000
+      });
+      setUserEmail("");
+      setUserPassword("");
+      localStorage.setItem("token",response.data.token)
+      setTimeout(()=>{
+        navigate("/admin/dashboard")
+      },2000)
+    }else{
       toast.dark("User Credentials Are Wrong")
     }
-    setUserEmail("");
-    setUserPassword("");
-
   }
-
-
   return (
     <>
     <main>
@@ -75,10 +70,7 @@ setTimeout(()=>{
                     </div>
 
                     <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe"/>
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
+                     <Link to="/forgot">Forgot Password?</Link>
                     </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit" onClick={onSubmit}>Login</button>

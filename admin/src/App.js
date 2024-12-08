@@ -12,8 +12,9 @@ import Dashboard from "./Components/App/pages/Dashboard"
 import Layout from "./Components/Static/layout/Layout";
 import { ToastContainer } from "react-toastify";
 import Products from "./Components/App/pages/Products";
-
+import Forgot from "./Components/App/pages/Forgot"
 import Protected from "./Components/Utils/Protected";
+import Categories from "./Components/App/pages/Categories";
 
 function App() {
  
@@ -30,10 +31,13 @@ function App() {
               <Route path="/admin/contact" element={<Protected Component={Contact}/>}/>
               <Route path="/admin/faq" element={<Protected Component={Faq}/>}/>
               <Route path="/admin/products" element={<Protected Component={Products}/>}/>
+              <Route path="/admin/categories" element={<Protected Component={Categories}/>}/>
+
                   </Route>
                   
                 <Route path="/register" element={<Register/>}></Route>
                 <Route path="/" element={<Login/>}></Route>
+                <Route path="/forgot" element={<Forgot/>}></Route>
                 <Route path="/*" element={<Error404/>}></Route>
           
    </Routes>
